@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 商品マスタ（現在の状態）
+model Product {
+  id          Int        @id @default(autoincrement())
+  name        String     // 商品名
+  sku         String     @unique // 商品識別コード（実務では必須のユニークID）
+  category    String?    // カテゴリ
+  quantity    Int        @default(0) // 現在の在庫数
+  alertLevel  Int        @default(5) // 在庫がこれ以下になったらアラートを出す閾値
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  // リレーション：この商品に紐づく入出庫履歴
+  stockLogs   StockLog[]
+}
+
+// 入出庫履歴（「いつ」「何が」「いくつ」「なぜ」動いたかのログ）
+model StockLog {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  product     Product  @relation(fields: [productId], references: [id])
+  changeQty   Int      // 増減数（+10なら入庫、-5なら出庫）
+  reason      String?  // 理由（例：「仕入れ」「客注」「棚卸し」）
+  createdAt   DateTime @default(now())
+}
