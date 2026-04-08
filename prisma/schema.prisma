@@ -1,11 +1,15 @@
+// prisma/schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // url = env("DATABASE_URL")  <-- ここを削除
 }
+
+// ... 以降のモデル定義（Product, StockLog）は変更なしでOK
 
 // 商品マスタ（現在の状態）
 model Product {
