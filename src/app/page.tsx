@@ -1,4 +1,6 @@
 import { AddProductDialog } from "@/components/AddProductDialog";
+import { EditProductDialog } from "@/components/EditProductDialog";
+import { StockBtn } from "@/components/ui/stockBtn";
 import { prisma } from "@/lib/prisma";
 
 export default async function InventoryPage() {
@@ -35,6 +37,7 @@ export default async function InventoryPage() {
                   <th className="p-3 font-semibold">SKU</th>
                   <th className="p-3 font-semibold text-right">在庫数</th>
                   <th className="p-3 font-semibold">カテゴリ</th>
+                  <th className="p-3 font-semibold"></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -51,11 +54,15 @@ export default async function InventoryPage() {
                     </td>
                     <td className="p-3 text-right font-bold">
                       {product.quantity.toLocaleString()}
+                      {/* <StockBtn productId={product.id} /> */}
                     </td>
                     <td className="p-3">
                       <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">
                         {product.category || "未分類"}
                       </span>
+                    </td>
+                    <td className="p-3 text-right font-bold">
+                      <EditProductDialog product={product} />
                     </td>
                   </tr>
                 ))}
