@@ -29,9 +29,9 @@ describe("商品削除API", () => {
     });
 
     const response = await DELETE(request, {
-      params: {
+      params: Promise.resolve({
         id: "1",
-      },
+      }),
     });
 
     expect(response.status).toBe(200);
@@ -49,9 +49,9 @@ describe("商品削除API", () => {
     });
 
     const response = await DELETE(request, {
-      params: {
+      params: Promise.resolve({
         id: "abc",
-      },
+      }),
     });
 
     expect(response.status).toBe(400);
