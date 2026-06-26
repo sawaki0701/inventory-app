@@ -64,7 +64,7 @@ export function EditProductDialog({ product }: Props) {
       }
 
       setOpen(false);
-      window.location.reload();
+      //window.location.reload();
     } catch (e) {
       console.error(e);
       alert("更新に失敗しました");
@@ -94,7 +94,7 @@ export function EditProductDialog({ product }: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="link" size="sm" className="ml-2">
+        <Button variant="outline" className="ml-2">
           編集
         </Button>
       </DialogTrigger>

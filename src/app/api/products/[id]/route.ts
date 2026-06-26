@@ -6,11 +6,12 @@ import { prisma } from "@/lib/prisma";
 // ==============================
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } },
+  context: { params: Promise<{ id: string }> },
 ) {
   try {
-    // IDチェック
-    const id = Number(params.id);
+    const { id: idParam } = await context.params;
+    const id = Number(idParam);
+
     if (isNaN(id)) {
       return NextResponse.json({ error: "IDが不正です" }, { status: 400 });
     }
@@ -21,7 +22,7 @@ export async function PATCH(
     // 更新データ組み立て（undefinedは除外）
     const updateData: any = {};
 
-    if (name !== undefined) updateData.name = name;
+    if (name) updateData.name = name;
     if (category !== undefined) updateData.category = category;
     if (alertLevel !== undefined) {
       const level = Number(alertLevel);
