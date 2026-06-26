@@ -1,6 +1,6 @@
 import { mockDeep, mockReset } from "jest-mock-extended";
 
-import type { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 export const prismaMock = mockDeep<PrismaClient>();
 
