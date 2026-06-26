@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const { name, sku, category, quantity, alertLevel } = body;
 
     // 実務ポイント: トランザクションで一貫性を守る
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: any) => {
       // 1. 商品を登録
       const product = await tx.product.create({
         data: {

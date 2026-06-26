@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     // ==============================
     // ② トランザクション
     // ==============================
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: any) => {
       // 商品取得
       const product = await tx.product.findUnique({
         where: { id },

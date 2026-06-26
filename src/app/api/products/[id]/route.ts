@@ -36,7 +36,7 @@ export async function PATCH(
     }
 
     // トランザクション（ログも残す）
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: any) => {
       const updated = await tx.product.update({
         where: { id },
         data: updateData,
