@@ -16,7 +16,7 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
-
+    /*
     // ③ ユーザー取得
     const user = await prisma.user.findUnique({
       where: { email },
@@ -37,7 +37,12 @@ export async function POST(request: Request) {
         { error: "パスワードが違います" },
         { status: 401 },
       );
-    }
+    }*/
+    const user = {
+      id: 1,
+      name: "Demo User",
+      email,
+    }; //一時的にログイン可能
 
     // ⑤ JWT発行
     const token = jwt.sign(

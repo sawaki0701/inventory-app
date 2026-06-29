@@ -1,4 +1,4 @@
-/*import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
 
@@ -27,11 +27,4 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: ["/((?!_next/static|_next/image|favicon.ico|api).*)"],
-};*/
-
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
-export function middleware(req: NextRequest) {
-  return NextResponse.next();
-}
+};
